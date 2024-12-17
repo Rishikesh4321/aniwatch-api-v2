@@ -72,17 +72,6 @@ app.onError((err, c) => {
   return c.json(res, { status: res.status });
 });
 
-// NOTE: this env is "required" for vercel deployments
-if (!Boolean(process.env?.ANIWATCH_API_VERCEL_DEPLOYMENT)) {
-  serve({
-    port: PORT,
-    fetch: app.fetch,
-  }).addListener("listening", () =>
-    console.info(
-      "\x1b[1;36m" + `aniwatch-api at http://localhost:${PORT}` + "\x1b[0m"
-    )
-  );
-
   // NOTE: remove the `if` block below for personal deployments
   if (ISNT_PERSONAL_DEPLOYMENT) {
     const interval = 9 * 60 * 1000; // 9mins
